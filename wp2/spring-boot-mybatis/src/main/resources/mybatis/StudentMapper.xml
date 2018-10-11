@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                            <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			   <mapper namespace="com.example.demo.mapper.StudentMapper">
+			   
+			        <parameterMap type="com.example.demo.bean.Student" id="StudentPM">
+			          <parameter property="stuId" resultMap="stu_id"/>
+			           <parameter property="stuName" resultMap="stu_name"/>
+			            <parameter property="stuAge" resultMap="stu_age"/>
+			             <parameter property="address.addId" resultMap="stu_add_id"  jdbcType="INTEGER"/>
+			        </parameterMap> 
+			        
+			        <resultMap type="com.example.demo.bean.Student" id="StudentRM2">
+			          <id property="stuId" column="stu_id" jdbcType="INTEGER"/>
+			          <result property="stuName" column="stu_name" jdbcType="VARCHAR"/>
+			          <result property="stuAge" column="stu_age" jdbcType="INTEGER"/>
+			           <result property="claId" column="stu_cla_id" jdbcType="INTEGER"/>
+			          <association property="address" column="stu_add_id"  javaType="com.example.demo.bean.Address" select="com.example.demo.mapper.AddressMapper.selectaddress"></association>
+			        </resultMap> 
+			        
+			       <resultMap type="com.example.demo.bean.Student" id="StudentRM">
+			          <id property="stuId" column="stu_id" jdbcType="INTEGER"/>
+			          <result property="stuName" column="stu_name" jdbcType="VARCHAR"/>
+			          <result property="stuAge" column="stu_age" jdbcType="INTEGER"/>
+			          <association property="address" column="stu_add_id"  javaType="com.example.demo.bean.Address" select="com.example.demo.mapper.AddressMapper.selectaddress"></association>
+			        </resultMap> 
+			        
+                   <insert id="addstudent"  parameterMap="StudentPM"> 
+                       INSERT INTO `t_student` ( `stu_id`,  `stu_cla_id`,  `stu_name`,  `stu_age`,  `stu_add_id`) VALUES  (#{stuId}, null ,#{stuName},#{stuAge},#{address.addId}) ;
+			        </insert>
+			        <update id="updatestudent" parameterMap="StudentPM">
+			          UPDATE `t_student` SET   `stu_name` = #{stuName},  `stu_age` = #{stuAge},  `stu_add_id` = #{address.addId} WHERE `stu_id` = #{stuId} ;
+			          
+			        </update> 
+			        <delete id="deletestudent" parameterType="int">
+			        DELETE FROM `t_student` WHERE `stu_id` =#{id} ;
+			        </delete>
+			       <select id="selectstudent" parameterType="int" resultMap="StudentRM">
+			        SELECT   * FROM  `t_student`  WHERE  `stu_id`=#{id};
+			        </select> 
+			        <select id="findbyclassid" parameterType="int" resultMap="StudentRM">
+			        SELECT   * FROM  `t_student`  WHERE  `stu_cla_id`=#{id};
+			        </select> 
+			         <select id="selectstudentbymap" parameterType="Map" resultMap="StudentRM">
+			        SELECT   * FROM  `t_student`  WHERE  1=1
+			        <if test="name!=null">and stu_name=#{name}</if>
+			        <if test="age!=null">and stu_age=#{age}</if>
+			        <if test="classId!=null">and stu_cla_id=#{classId}</if>
+			        <if test="addressId!=null">and stu_add_id=#{addressId}</if>
+			        </select> 
+			        <select id="selectclassidbyid" parameterType="int" resultType="int">
+			        SELECT   stu_cla_id FROM  `t_student`  WHERE  `stu_id`=#{id};
+			        </select> 
+			          <select id="selectAll"  resultMap="StudentRM2">
+			        SELECT   * FROM  `t_student`;
+			        </select> 
+			    </mapper>  

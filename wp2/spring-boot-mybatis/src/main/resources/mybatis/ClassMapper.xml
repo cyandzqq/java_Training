@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                            <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			   <mapper namespace="com.example.demo.mapper.ClassMapper">
+			   
+			   <parameterMap type="com.example.demo.bean.Class" id="ClassPM">
+			          <parameter property="claId" resultMap="cla_id"/>
+			           <parameter property="claName" resultMap="cla_name"/>
+			        </parameterMap> 
+			        
+			 <resultMap id="ClassRM" type="com.example.demo.bean.Class">
+			   <id property="claId" column="cla_id" jdbcType="INTEGER"/>
+			   <result property="claName" column="cla_name" jdbcType="VARCHAR"/>
+               <collection property="stulist" column="cla_id" select="com.example.demo.mapper.StudentMapper.findbyclassid" javaType="ArrayList" ofType="com.example.demo.bean.Student"></collection>
+			   </resultMap>  
+			   
+                    <insert id="addclass"  parameterMap="ClassPM"> 
+                         INSERT INTO `t_class` (`cla_id`, `cla_name`) VALUES (#{cla_id}, #{cla_name}); 
+			        </insert>
+			        <update id="updateclass" parameterMap="ClassPM">
+			        UPDATE `t_class` SET `cla_name` = #{cla_name}  WHERE `cla_id` = #{cla_id};
+			        </update>
+			        <delete id="deleteclass" parameterType="int">
+			        DELETE FROM `t_class` WHERE `cla_id` = #{cla_id};
+			        </delete>
+			     <select id="selectclassbyid" parameterType="int" resultMap="ClassRM">
+			         SELECT  * FROM `t_class` WHERE  `cla_id`=#{id};
+			        </select> 
+			        
+			    </mapper>  
