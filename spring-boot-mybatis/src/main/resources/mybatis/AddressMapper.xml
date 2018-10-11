@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                            <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			   <mapper namespace="com.example.demo.mapper.AddressMapper">
+			   
+                   <insert id="addaddress"  parameterType="com.example.demo.bean.Address"> 
+                         INSERT INTO `t_address` (`add_id`, `add_name`) VALUES  (#{add_id}, #{add_name}) ;
+			        </insert>
+			       <update id="updateaddress" parameterType="com.example.demo.bean.Address">
+			       UPDATE  `t_address` SET  `add_name` = #{add_name} WHERE `add_id` = #{add_id} ;
+			        </update>
+			        <delete id="deleteaddress" parameterType="int">
+			        DELETE FROM `t_address` WHERE `add_id` = #{add_id};
+			        </delete>
+			        <select id="selectaddress" parameterType="int" resultType="com.example.demo.bean.Address">
+			         SELECT   `add_id`,  `add_name` FROM  `t_address` WHERE `add_id`=#{add_id};
+			        </select> 
+			        <!-- <delete id="deleteaddressbylist" parameterType="Map">
+			        DELETE FROM `t_address`  WHERE `add_id` in
+			        <foreach item="id" collection="list" open="(" separator="," close=")">
+			        #{id}
+			        </foreach>
+			        </delete> -->
+			         <delete id="deleteaddressbylist" parameterType="List">
+			        DELETE FROM `t_address`  WHERE `add_id` in
+			        <foreach item="id" collection="list" open="(" separator="," close=")">
+			        #{id}
+			        </foreach>
+			        </delete>
+			    </mapper>  

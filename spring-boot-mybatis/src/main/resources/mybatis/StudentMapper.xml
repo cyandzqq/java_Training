@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                            <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			   <mapper namespace="com.example.demo.mapper.StudentMapper">
+			   
+			        <parameterMap type="com.example.demo.bean.Student" id="StudentPM">
+			          <parameter property="stu_id" resultMap="stu_id"/>
+			           <parameter property="stu_name" resultMap="stu_name"/>
+			            <parameter property="stu_age" resultMap="stu_age"/>
+			             <parameter property="address.add_id" resultMap="stu_add_id"  jdbcType="INTEGER"/>
+			        </parameterMap> 
+			        
+			       <resultMap type="com.example.demo.bean.Student" id="StudentRM">
+			          <id property="stu_id" column="stu_id" jdbcType="INTEGER"/>
+			          <result property="stu_name" column="stu_name" jdbcType="VARCHAR"/>
+			          <result property="stu_age" column="stu_age" jdbcType="INTEGER"/>
+			          <association property="address" column="stu_add_id"  javaType="com.example.demo.bean.Address" select="com.example.demo.mapper.AddressMapper.selectaddress"></association>
+			        </resultMap> 
+			        
+                   <insert id="addstudent"  parameterMap="StudentPM"> 
+                       INSERT INTO `t_student` ( `stu_id`,  `stu_cla_id`,  `stu_name`,  `stu_age`,  `stu_add_id`) VALUES  (#{stu_id}, #{id} ,#{stu_name},#{stu_age},#{address.add_id}) ;
+			        </insert>
+			        <update id="updatestudent" parameterMap="StudentPM">
+			          UPDATE `t_student` SET   `stu_name` = #{stu_name},  `stu_age` = #{stu_age},  `stu_add_id` = #{address.add_id} WHERE `stu_id` = #{stu_id} ;
+			          
+			        </update> 
+			        <delete id="deletestudent" parameterType="int">
+			        DELETE FROM `t_student` WHERE `stu_id` =#{id} ;
+			        </delete>
+			       <select id="selectstudent" parameterType="int" resultMap="StudentRM">
+			        SELECT   * FROM  `t_student`  WHERE  `stu_id`=#{id};
+			        </select> 
+			        <select id="findbyclassid" parameterType="int" resultMap="StudentRM">
+			        SELECT   * FROM  `t_student`  WHERE  `stu_cla_id`=#{id};
+			        </select> 
+			         <select id="selectstudentbymap" parameterType="Map" resultMap="StudentRM">
+			        SELECT   * FROM  `t_student`  WHERE  1=1
+			        <if test="name!=null">and stu_name=#{name}</if>
+			        <if test="age!=null">and stu_age=#{age}</if>
+			        <if test="classId!=null">and stu_cla_id=#{classId}</if>
+			        <if test="addressId!=null">and stu_add_id=#{addressId}</if>
+			        </select> 
+			        <select id="selectclassidbyid" parameterType="int" resultType="int">
+			        SELECT   stu_cla_id FROM  `t_student`  WHERE  `stu_id`=#{id};
+			        </select> 
+			    </mapper>  
