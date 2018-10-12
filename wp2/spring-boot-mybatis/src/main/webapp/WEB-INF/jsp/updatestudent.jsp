@@ -19,19 +19,6 @@
         	<th>班级<input type="text" name="cla" id="cla"></th>
         	<br>
         	<th><input type="submit" value="提交"></th>
-        <%-- 	<% 
-        	//String name=pageContext.getAttribute("name").toString();
-        	System.out.println(name);
-        	request.setAttribute("name", name);
-        	//String age=pageContext.getAttribute("age").toString();
-        	String age=request.getParameter("age");
-        	request.setAttribute("age", age);
-        	//String cla=pageContext.getAttribute("cla").toString();
-        	String cla=request.getParameter("cla");
-        	request.setAttribute("claid",cla);
-        	%>
-        	<th><a href="${pageContext.request.contextPath}/updateStudent?id=${stuid}">提交</a></th>
-        	 --%>
          </table>
          </form>
   </body>

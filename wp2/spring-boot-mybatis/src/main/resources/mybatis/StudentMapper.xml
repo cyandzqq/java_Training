@@ -35,13 +35,13 @@
 			        <delete id="deletestudent" parameterType="int">
 			        DELETE FROM `t_student` WHERE `stu_id` =#{id} ;
 			        </delete>
-			       <select id="selectstudent" parameterType="int" resultMap="StudentRM">
+			       <select id="selectstudent" parameterType="int" resultMap="StudentRM2">
 			        SELECT   * FROM  `t_student`  WHERE  `stu_id`=#{id};
 			        </select> 
 			        <select id="findbyclassid" parameterType="int" resultMap="StudentRM">
 			        SELECT   * FROM  `t_student`  WHERE  `stu_cla_id`=#{id};
 			        </select> 
-			         <select id="selectstudentbymap" parameterType="Map" resultMap="StudentRM">
+			         <select id="selectstudentbymap" parameterType="Map" resultMap="StudentRM2">
 			        SELECT   * FROM  `t_student`  WHERE  1=1
 			        <if test="name!=null">and stu_name=#{name}</if>
 			        <if test="age!=null">and stu_age=#{age}</if>

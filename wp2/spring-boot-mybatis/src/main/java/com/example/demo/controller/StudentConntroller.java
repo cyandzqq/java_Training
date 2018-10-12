@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,6 +46,22 @@ public class StudentConntroller {
 		return mv;
 	}
 	
+	@RequestMapping(value="selectStudentbymap")
+	public ModelAndView selectStudentbymap(HttpServletRequest request,HttpServletResponse response){
+		String name=request.getParameter("name");
+		String age=request.getParameter("age");		
+		String claid=request.getParameter("cla");	
+		Map<String, Object> map=new HashMap<>();
+		if(name!=null&&name!=""){map.put("name", name);}
+		if(age!=null&&age!=""){int agee=Integer.parseInt(age);map.put("age", agee);}
+		if(claid!=null&&claid!=""){int claa=Integer.parseInt(claid);map.put("classId", claa);}	
+		List<Student> list= studentmapper.selectstudentbymap(map);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("students", list);
+		mv.setViewName("student");
+		return mv;
+	}
+	
 	@RequestMapping(value="deleteStudent")
 	public ModelAndView deletestudent(int id,HttpServletRequest request,HttpServletResponse response){
 		studentmapper.deletestudent(id);
@@ -76,6 +94,7 @@ public class StudentConntroller {
 		newstu.setStuName(name);
 		newstu.setStuAge(agee);
 		newstu.setClaId(claa);
+		newstu.setAddress(addressmapper.selectaddress(id));
 		studentmapper.updatestudent(newstu);
 		List<Student> list= studentmapper.selectAll();
 		ModelAndView mv = new ModelAndView();

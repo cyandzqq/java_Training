@@ -8,7 +8,14 @@
   <body>
    <%-- <strong>HI ${student.name} ,</strong> <br/>
    <strong>HI ${student.age} ,</strong>  --%>
-   
+   <form action="${pageContext.request.contextPath}/selectStudentbymap">
+    <table border="1" align="center">
+     <th>姓名<input type="text" name="name" id="name"></th>
+     <th>年龄<input type="text" name="age" id="age"></th>
+     <th>班级<input type="text" name="cla" id="cla"></th>
+     <th><input type="submit" value="搜索" ></th>
+    </table>
+   </form>
         <table border="1" align="center">
             <th>序号</th>
         	<th>姓名</th>
