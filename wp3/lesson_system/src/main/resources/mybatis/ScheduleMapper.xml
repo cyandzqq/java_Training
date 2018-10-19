@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                           <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			   <mapper namespace="com.capgemini.lessys.mapper.ScheduleMapper">
+			   
+			       <parameterMap type="com.capgemini.lessys.bean.Schedule" id="SchedulePM">
+			          <parameter property="id" resultMap="id"/>
+			           <parameter property="teaId" resultMap="teacher_id"/>
+			           <parameter property="lesId" resultMap="lesson_id"/>
+			        </parameterMap> 
+			 
+			        <resultMap id="LessonRM" type="com.capgemini.lessys.bean.Lesson">
+			        <id property="id" column="lesson_id" jdbcType="INTEGER"/>
+			        <result property="name" column="lesson_name" jdbcType="VARCHAR"/>
+			        <collection property="tealist" column="lesson_id" select="com.capgemini.lessys.mapper.ScheduleMapper.getTeacherByLesId"  javaType="List" ofType="com.capgemini.lessys.bean.User"></collection>			         
+			        </resultMap>  
+			        
+			        <resultMap id="ScheduleRM" type="com.capgemini.lessys.bean.Schedule2">
+			        <id property="id" column="id" jdbcType="INTEGER"/>
+			        <result property="teaId" column="teacher_id" jdbcType="INTEGER"/>
+			         <result property="teaName" column="tea_name" jdbcType="VARCHAR"/>
+			          <result property="lesId" column="lesson_id" jdbcType="INTEGER"/>
+			         <result property="lesName" column="les_name" jdbcType="VARCHAR"/>
+			        </resultMap> 
+			        
+			        
+			        <resultMap id="TeacherRM" type="com.capgemini.lessys.bean.User">
+			        <id property="id" column="user_id" jdbcType="INTEGER"/>
+			        <result property="name" column="user_name" jdbcType="VARCHAR"/>
+			        <result property="password" column="user_password" jdbcType="VARCHAR"/>
+			         <result property="email" column="user_email" jdbcType="VARCHAR"/>
+			         <result property="status" column="user_status" jdbcType="INTEGER"/>
+			        </resultMap> 
+			        
+			      <insert id="addSchedule" parameterMap="SchedulePM">
+			      INSERT INTO `t_schedule` (`id`, `teacher_id`, `lesson_id`) VALUES  (#{id}, #{teaId}, #{lesId}) ;
+			      </insert>
+                  <select id="getAllLesson" resultMap="LessonRM">
+                  SELECT  * FROM  `t_lesson` ;  
+                  </select>
+			      <select id="getTeacherByLesId" parameterType="int" resultMap="TeacherRM">
+			      select * from t_user ,t_schedule where t_user.user_id=t_schedule.teacher_id and t_schedule.lesson_id=#{id}
+			      </select>
+			      <select id="getLessonById" resultMap="LessonRM" parameterType="int">
+                  SELECT  * FROM  `t_lesson` WHERE lesson_id=#{id};  
+                  </select>
+                  
+                  <select id="getAllSchedule" resultMap="ScheduleRM">
+                  SELECT  * FROM  t_schedule s,
+                  (select user_name tea_name,user_id tea_id from t_user where user_status=2) tea,
+                  (select lesson_name les_name,lesson_id les_id from t_lesson) les
+                  where s.teacher_id=tea.tea_id and s.lesson_id=les.les_id;  
+                  </select>
+			    </mapper>   

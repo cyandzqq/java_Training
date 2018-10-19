@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                            <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			   <mapper namespace="com.capgemini.lessys.mapper.UserMapper">
+			   
+			         <parameterMap type="com.capgemini.lessys.bean.User" id="UserPM">
+			           <parameter property="id" resultMap="user_id"/>
+			           <parameter property="name" resultMap="user_name"/>
+			           <parameter property="password" resultMap="user_password"/>
+			           <parameter property="email" resultMap="user_email"/>
+			           <parameter property="status" resultMap="user_status"/>
+			        </parameterMap> 
+			        
+			        <resultMap id="MasterRM" type="com.capgemini.lessys.bean.User">
+			        <id property="id" column="user_id" jdbcType="INTEGER"/>
+			        <result property="name" column="user_name" jdbcType="VARCHAR"/>
+			        <result property="password" column="user_password" jdbcType="VARCHAR"/>
+			         <result property="email" column="user_email" jdbcType="VARCHAR"/>
+			         <result property="status" column="user_status" jdbcType="INTEGER"/>
+			        </resultMap> 
+	   
+                  <insert id="addUser" parameterMap="UserPM">
+                    INSERT INTO `t_user` ( `user_name`,  `user_password`,  `user_email`,  `user_status`) 
+                    VALUES  (#{name},#{password},#{email},#{status}) 
+                   </insert>
+			      
+			       <select id="getMaster"  resultMap="MasterRM">
+			       select * from t_user where user_status=3
+			       </select>
+			       
+			       <select id="getUserByEmail"  resultMap="MasterRM">
+			       select * from t_user where user_email=#{email}
+			       </select>
+			       <select id="getTeacherByLessonId"  resultMap="MasterRM">
+			       select * from t_user u,t_schedule s			       
+			       where u.user_id=s.teacher_id and s.lesson_id=#{id}
+			       </select>
+			       <select id="getUserById"  resultMap="MasterRM">
+			       select * from t_user where user_id=#{id}
+			       </select>
+			    </mapper>  
