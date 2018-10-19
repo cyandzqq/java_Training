@@ -36,7 +36,7 @@ public class ApplyService {
 			return list;
 		}
 		
-		 //主任根据自身id获取需要审批申请表
+		//主任根据自身id获取需要审批申请表
 		public List<Apply> getApplyByMasterId(int id){
 			List<Apply> list=applymapper.getApplyByMaster(id);
 			return list;
@@ -58,6 +58,7 @@ public class ApplyService {
 		public void setStateOne(int id,int i){
 			applymapper.setStateOne(id, i);
 		}
+		
 		//主任对表单进行处理
 	    public void setStateTwo(int id,int i){
 			applymapper.setStateTwo(id, i);

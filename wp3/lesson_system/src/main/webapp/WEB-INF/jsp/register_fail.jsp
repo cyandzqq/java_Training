@@ -3,21 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
- 	<title>注册失败</title>
-	<meta charset="UTF-8"/>
-<style type=text/css>
- </style>
+  <title>注册失败</title>
+  <meta charset="UTF-8"/>
   </head>
- <body  style=" background: url('images/register.jpg') no-repeat center 0px ; background-size: cover; ">
-	<div >
-	<div style="text-align: center; height: 30%;width: 30%; background-color: #99CCFF; margin-left: 40%; margin-top: 20%">
-		
-    <h1>注册失败!</h1>
-<br><br>
-<a href="${pageContext.request.contextPath}/register">确定</a>
-
-	</div>
-</div>
-</body>
-  
+  <body  style=" background: url('images/register.jpg') no-repeat center 0px ; background-size: cover; ">
+	 <div>
+	    <div style="text-align: center; height: 30%;width: 30%; background-color: #99CCFF; margin-left: 40%; margin-top: 20%">		
+            <h1>注册失败!</h1>
+            <br><br>
+            <a href="${pageContext.request.contextPath}/register">确定</a>
+        </div>
+     </div>
+  </body>  
 </html>

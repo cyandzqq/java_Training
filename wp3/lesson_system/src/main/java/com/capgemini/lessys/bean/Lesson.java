@@ -2,6 +2,7 @@ package com.capgemini.lessys.bean;
 
 import java.util.List;
 
+/*课程实体类*/
 public class Lesson {
 
 	private int id;
@@ -44,7 +45,8 @@ public class Lesson {
 	}
 	@Override
 	public String toString() {
-		return "Lesson [id=" + id + ", name=" + name + "]";
+		return "Lesson [id=" + id + ", name=" + name + ", tealist=" + tealist + "]";
 	}
+	
 	
 }

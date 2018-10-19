@@ -1,106 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
-                            <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 			    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-			   <mapper namespace="com.capgemini.lessys.mapper.ApplyMapper">
+			    <mapper namespace="com.capgemini.lessys.mapper.ApplyMapper">
 			   
 			       <parameterMap type="com.capgemini.lessys.bean.Apply" id="ApplyPM">
 			          <parameter property="stuId" resultMap="student_id"/>
-			           <parameter property="lesId" resultMap="lesson_id"/>
-			            <parameter property="teaId" resultMap="teacher_id"/>
-			             <parameter property="masId" resultMap="master_id"/>
-			              <parameter property="stuNum" resultMap="student_num"/>
-			               <parameter property="grade" resultMap="student_grade"/>
-			                <parameter property="phone" resultMap="student_phone"/>
-			                 <parameter property="email" resultMap="student_email"/>			                  
-			                   <parameter property="timesubmit" resultMap="time_submit"/>			                   
-			        </parameterMap> 
+			          <parameter property="lesId" resultMap="lesson_id"/>
+			          <parameter property="teaId" resultMap="teacher_id"/>
+			          <parameter property="masId" resultMap="master_id"/>
+			          <parameter property="stuNum" resultMap="student_num"/>
+			          <parameter property="grade" resultMap="student_grade"/>
+			          <parameter property="phone" resultMap="student_phone"/>
+			          <parameter property="email" resultMap="student_email"/>			                  
+			          <parameter property="timesubmit" resultMap="time_submit"/>			                   
+			       </parameterMap> 
 			 
-			         <resultMap id="ApplyRM" type="com.capgemini.lessys.bean.Apply">
-			        <id property="id" column="id" jdbcType="INTEGER"/>
-			        <result  property="stuId" column="student_id" jdbcType="INTEGER"/>
-			        <result  property="lesId" column="lesson_id" jdbcType="INTEGER"/>
-			        <result  property="teaId" column="teacher_id" jdbcType="INTEGER"/>
-			        <result  property="masId" column="master_id" jdbcType="INTEGER"/>
-			        <result  property="stuNum" column="student_num" jdbcType="INTEGER"/>
-			        <result property="grade" column="student_grade" jdbcType="VARCHAR"/>
-			         <result property="phone" column="student_phone" jdbcType="VARCHAR"/>
+			       <resultMap id="ApplyRM" type="com.capgemini.lessys.bean.Apply">
+			          <id property="id" column="id" jdbcType="INTEGER"/>
+			          <result  property="stuId" column="student_id" jdbcType="INTEGER"/>
+			          <result  property="lesId" column="lesson_id" jdbcType="INTEGER"/>
+			          <result  property="teaId" column="teacher_id" jdbcType="INTEGER"/>
+			          <result  property="masId" column="master_id" jdbcType="INTEGER"/>
+			          <result  property="stuNum" column="student_num" jdbcType="INTEGER"/>
+			          <result property="grade" column="student_grade" jdbcType="VARCHAR"/>
+			          <result property="phone" column="student_phone" jdbcType="VARCHAR"/>
 			          <result property="email" column="student_email" jdbcType="VARCHAR"/>
 			          <result property="stuName" column="stu_name" jdbcType="VARCHAR"/>
-			           <result property="teaName" column="tea_name" jdbcType="VARCHAR"/>
-			           <result property="lesName" column="les_name" jdbcType="VARCHAR"/>
-			           <result property="masName" column="mas_name" jdbcType="VARCHAR"/>
+			          <result property="teaName" column="tea_name" jdbcType="VARCHAR"/>
+			          <result property="lesName" column="les_name" jdbcType="VARCHAR"/>
+			          <result property="masName" column="mas_name" jdbcType="VARCHAR"/>
 			          <result property="timesubmit" column="time_submit" />   		           
-			            <result  property="stateOne" column="state_one" jdbcType="INTEGER"/>
-			          <result  property="stateTwo" column="state_two" jdbcType="INTEGER"/>
-			                        
-			        </resultMap> 
-			        
-			     
-			        
+			          <result  property="stateOne" column="state_one" jdbcType="INTEGER"/>
+			          <result  property="stateTwo" column="state_two" jdbcType="INTEGER"/>			                        
+			       </resultMap> 
+			        			   			        
 			   <insert id="addApply" parameterMap="ApplyPM">
-			   INSERT INTO `lesson_systom`.`t_apply` (`student_id`, `lesson_id`, `teacher_id`, `master_id`, `student_num`, `student_grade`, `student_phone`, `student_email`,`time_submit`) 
-                                              VALUES ( #{stuId},#{lesId},#{teaId},#{masId},#{stuNum},#{grade},#{phone},#{email},#{timesubmit}) ;
+			      INSERT INTO `lesson_systom`.`t_apply` (`student_id`, `lesson_id`, `teacher_id`, `master_id`, `student_num`, `student_grade`, `student_phone`, `student_email`,`time_submit`) 
+                  VALUES ( #{stuId},#{lesId},#{teaId},#{masId},#{stuNum},#{grade},#{phone},#{email},#{timesubmit}) ;
 			   </insert>
-                  <update id="setStateOne">
+			   
+               <update id="setStateOne">
                   UPDATE   `lesson_systom`.`t_apply` SET  `state_one` = #{i} WHERE `id` = #{id} ;
-                  </update>
-                  <update id="setStateTwo">
+               </update>
+               
+               <update id="setStateTwo">
                   UPDATE   `lesson_systom`.`t_apply` SET  `state_two` = #{i} WHERE `id` = #{id} ;
-                  </update>
-			      <select id="getApplyByMap" parameterType="Map" resultMap="ApplyRM">
-			          SELECT DISTINCT  * FROM  t_apply a,
-			          (select lesson_id les_id,lesson_name les_name from t_lesson) les,
-			        (SELECT t_user.user_id stu_id,t_user.user_name stu_name
+               </update>
+               
+			   <select id="getApplyByMap" parameterType="Map" resultMap="ApplyRM">
+			      SELECT DISTINCT  * FROM  t_apply a,
+			      (select lesson_id les_id,lesson_name les_name from t_lesson) les,
+			      (SELECT t_user.user_id stu_id,t_user.user_name stu_name
 			         FROM t_apply ,t_user WHERE t_apply.student_id=t_user.user_id AND t_user.user_status=1) stu,
-			         (SELECT t_user.user_id tea_id,t_user.user_name tea_name
+			      (SELECT t_user.user_id tea_id,t_user.user_name tea_name
 			         FROM t_apply ,t_user WHERE t_apply.teacher_id=t_user.user_id AND t_user.user_status=2) tea,
-			         (SELECT t_user.user_id mas_id,t_user.user_name mas_name
+			      (SELECT t_user.user_id mas_id,t_user.user_name mas_name
 			         FROM t_apply ,t_user WHERE t_apply.master_id=t_user.user_id AND t_user.user_status=3) mas
-			         WHERE a.student_id=stu.stu_id AND a.teacher_id=tea.tea_id AND a.master_id=mas.mas_id AND a.lesson_id=les.les_id          	    
-			        <if test="stuName!=null and stuName!=''">and stu.stu_name=#{stuName}</if>
-			        <if test="teaName!=null and teaName!=''">and tea.tea_name=#{teaName}</if>
-			        <if test="masName!=null and masName!=''">and mas.mas_name=#{masName}</if>
-			        <if test="lesName!=null and lesName!=''">and les.les_name=#{lesName}</if>
-			        <if test="stuNum!=null and stuNum!=''">and a.student_num=#{stuNum}</if>		        
-			        </select>   
-			        <select id="getApplyByTeacher" parameterType="int"  resultMap="ApplyRM">
-			          SELECT  DISTINCT * FROM  t_apply a,
-			          (select lesson_id les_id,lesson_name les_name from t_lesson) les,
-			        (SELECT t_user.user_id stu_id,t_user.user_name stu_name
+			      WHERE a.student_id=stu.stu_id AND a.teacher_id=tea.tea_id AND a.master_id=mas.mas_id AND a.lesson_id=les.les_id          	    
+			      <if test="stuName!=null and stuName!=''">and stu.stu_name=#{stuName}</if>
+			      <if test="teaName!=null and teaName!=''">and tea.tea_name=#{teaName}</if>
+			      <if test="masName!=null and masName!=''">and mas.mas_name=#{masName}</if>
+			      <if test="lesName!=null and lesName!=''">and les.les_name=#{lesName}</if>
+			      <if test="stuNum!=null and stuNum!=''">and a.student_num=#{stuNum}</if>		        
+			   </select> 
+			     
+			   <select id="getApplyByTeacher" parameterType="int"  resultMap="ApplyRM">
+			      SELECT  DISTINCT * FROM  t_apply a,
+			      (select lesson_id les_id,lesson_name les_name from t_lesson) les,
+			      (SELECT t_user.user_id stu_id,t_user.user_name stu_name
 			         FROM t_apply ,t_user WHERE t_apply.student_id=t_user.user_id AND t_user.user_status=1) stu,
-			         (SELECT t_user.user_id tea_id,t_user.user_name tea_name
+			      (SELECT t_user.user_id tea_id,t_user.user_name tea_name
 			         FROM t_apply ,t_user WHERE t_apply.teacher_id=t_user.user_id AND t_user.user_status=2) tea,
-			         (SELECT t_user.user_id mas_id,t_user.user_name mas_name
+			      (SELECT t_user.user_id mas_id,t_user.user_name mas_name
 			         FROM t_apply ,t_user WHERE t_apply.master_id=t_user.user_id AND t_user.user_status=3) mas
-			         WHERE a.student_id=stu.stu_id AND a.teacher_id=tea.tea_id AND a.master_id=mas.mas_id AND a.lesson_id=les.les_id 
-			         AND teacher_id=#{id} AND state_one=0;
-			        </select>
-			        <select id="getApplyByMaster" parameterType="int"  resultMap="ApplyRM">
-			          SELECT  DISTINCT * FROM  t_apply a,
-			          (select lesson_id les_id,lesson_name les_name from t_lesson) les,
-			        (SELECT t_user.user_id stu_id,t_user.user_name stu_name
+			      WHERE a.student_id=stu.stu_id AND a.teacher_id=tea.tea_id AND a.master_id=mas.mas_id AND a.lesson_id=les.les_id 
+			      AND teacher_id=#{id} AND state_one=0;
+			   </select>
+			   
+			   <select id="getApplyByMaster" parameterType="int"  resultMap="ApplyRM">
+			      SELECT  DISTINCT * FROM  t_apply a,
+			      (select lesson_id les_id,lesson_name les_name from t_lesson) les,
+			      (SELECT t_user.user_id stu_id,t_user.user_name stu_name
 			         FROM t_apply ,t_user WHERE t_apply.student_id=t_user.user_id AND t_user.user_status=1) stu,
-			         (SELECT t_user.user_id tea_id,t_user.user_name tea_name
+			      (SELECT t_user.user_id tea_id,t_user.user_name tea_name
 			         FROM t_apply ,t_user WHERE t_apply.teacher_id=t_user.user_id AND t_user.user_status=2) tea,
-			         (SELECT t_user.user_id mas_id,t_user.user_name mas_name
+			      (SELECT t_user.user_id mas_id,t_user.user_name mas_name
 			         FROM t_apply ,t_user WHERE t_apply.master_id=t_user.user_id AND t_user.user_status=3) mas
-			         WHERE a.student_id=stu.stu_id AND a.teacher_id=tea.tea_id AND a.master_id=mas.mas_id AND a.lesson_id=les.les_id 
-			         AND master_id=#{id} AND state_one=1 AND state_two=0;
-			        </select>
-			        <select id="getcount"   resultType="int">
-			         SELECT   count(*) FROM  t_apply ;
-			        </select>
+			      WHERE a.student_id=stu.stu_id AND a.teacher_id=tea.tea_id AND a.master_id=mas.mas_id AND a.lesson_id=les.les_id 
+			      AND master_id=#{id} AND state_one=1 AND state_two=0;
+			   </select>
+			   
+			   <select id="getcount"   resultType="int">
+			      SELECT   count(*) FROM  t_apply ;
+			   </select>
 			       
-			         <select id="getApplyByStuLesId"   resultMap="ApplyRM">
-			          SELECT  DISTINCT * FROM  t_apply a,
-			          (select lesson_id les_id,lesson_name les_name from t_lesson) les,
-			        (SELECT t_user.user_id stu_id,t_user.user_name stu_name
+			   <select id="getApplyByStuLesId"   resultMap="ApplyRM">
+			      SELECT  DISTINCT * FROM  t_apply a,
+			      (select lesson_id les_id,lesson_name les_name from t_lesson) les,
+			      (SELECT t_user.user_id stu_id,t_user.user_name stu_name
 			         FROM t_apply ,t_user WHERE t_apply.student_id=t_user.user_id AND t_user.user_status=1) stu,
-			         (SELECT t_user.user_id tea_id,t_user.user_name tea_name
+			      (SELECT t_user.user_id tea_id,t_user.user_name tea_name
 			         FROM t_apply ,t_user WHERE t_apply.teacher_id=t_user.user_id AND t_user.user_status=2) tea,
-			         (SELECT t_user.user_id mas_id,t_user.user_name mas_name
+			      (SELECT t_user.user_id mas_id,t_user.user_name mas_name
 			         FROM t_apply ,t_user WHERE t_apply.master_id=t_user.user_id AND t_user.user_status=3) mas
-			         WHERE a.student_id=stu.stu_id AND a.teacher_id=tea.tea_id AND a.master_id=mas.mas_id AND a.lesson_id=les.les_id 
-			         AND a.lesson_id=#{lesId} AND a.student_id=#{stuId} AND a.state_one!=-1 AND a.state_two!=-1
-			        </select>
-			    </mapper>  
+			      WHERE a.student_id=stu.stu_id AND a.teacher_id=tea.tea_id AND a.master_id=mas.mas_id AND a.lesson_id=les.les_id 
+			      AND a.lesson_id=#{lesId} AND a.student_id=#{stuId} AND a.state_one!=-1 AND a.state_two!=-1
+			   </select>
+			   
+			  </mapper>  

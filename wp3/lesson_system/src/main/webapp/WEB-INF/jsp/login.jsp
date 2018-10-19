@@ -3,71 +3,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
-   <meta charset="UTF-8"/>
-<title>学生选课系统</title>
-<style type=text/css>
-.fh{color:red;}
-.student{border: 1px solid gray;
+  <meta charset="UTF-8"/>
+  <title>学生选课系统</title>
+  <style type=text/css>
+    .fh{color:red;}
+    .student{
+         border: 1px solid gray;
          background: white;
 		 }
-#login{
-       color:black;
-	  width: 100px;
-	  height: 30px;
-	  
-	   border: 1px solid gray;
-	   font-weight: bold;
-}
-#register{
-       color:black;
-	  width: 100px;
-	  height: 30px;
-	  
-	   border: 1px solid gray;
-	   font-weight: bold;
-}
-
- </style>
+    #login{
+         color:black;
+	     width: 100px;
+	     height: 30px;	  
+	     border: 1px solid gray;
+	     font-weight: bold;
+         }
+    #register{
+         color:black;
+	     width: 100px;
+	     height: 30px;	  
+	     border: 1px solid gray;
+	     font-weight: bold;
+         }
+  </style>
   </head>
-	<body style="background: url('images/login.jpg') no-repeat center 0px ; background-size: cover;">
-
-   <div id="form" style=" text-align: center; width:40%; height: 30%; margin-left: 30%; margin-top: 13%;"  >
-    <form name="myform"  action="${pageContext.request.contextPath}/trylogin">	
-	<br><br>
-	<div class="input">
-	<span class="fh">*</span><span>邮箱地址：</span>
-	<input type="text" class="student" name="address" >
-	</div>
-	<br>
-	<div class="input">
-	<span class="fh">*</span><span>密码：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="password" class="student" name="password" >
-	</div>
-    <br><br>
-	<div ><input type="submit" value="登录" id="login" >
-          <a href="${pageContext.request.contextPath}/register">注册</a>
-	</div>
-	</form>
-   </div>
-</body>
-        <%-- <table border="1" align="center">
-            <th>序号</th>
-        	<th>姓名</th>
-        	<th>年龄</th>
-        	<th>班级</th>
-        	<th>地址</th>
-        	<th>操作</th>
-          <c:forEach var="st" items="${students}" >
-         	<tr>
-         		<td>${st.stuId }</td>
-         		<td>${st.stuName }</td>
-         		<td>${st.stuAge }</td>
-         		<td>${st.claId}</td>
-         		<td>${st.address.addName }</td>
-         		<td><a href="${pageContext.request.contextPath}/deleteStudent?id=${st.stuId}">删除</a><a href="${pageContext.request.contextPath}/updateStudent0?id=${st.stuId}">编辑</a></td>
-         	</tr>
-         	
-         </c:forEach>
-         </table> --%>
-  
+  <body style="background: url('images/login.jpg') no-repeat center 0px ; background-size: cover;">
+     <div id="form" style=" text-align: center; width:40%; height: 30%; margin-left: 30%; margin-top: 13%;"  >
+        <form name="myform"  action="${pageContext.request.contextPath}/trylogin">	
+	        <br><br>
+	        <div class="input">
+	             <span class="fh">*</span><span>邮箱地址：</span>
+	             <input type="text" class="student" name="address" >
+	        </div>
+	        <br>
+	        <div class="input">
+	             <span class="fh">*</span><span>密码：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	             <input type="password" class="student" name="password" >
+	        </div>
+            <br><br>
+	        <div>
+	             <input type="submit" value="登录" id="login" >
+                 <a href="${pageContext.request.contextPath}/register">注册</a>
+	        </div>
+        </form>
+     </div>
+  </body>  
 </html>

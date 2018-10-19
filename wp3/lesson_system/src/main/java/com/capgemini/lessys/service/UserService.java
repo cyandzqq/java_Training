@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.capgemini.lessys.bean.Lesson;
 import com.capgemini.lessys.bean.Schedule;
 import com.capgemini.lessys.bean.User;
 import com.capgemini.lessys.mapper.ScheduleMapper;

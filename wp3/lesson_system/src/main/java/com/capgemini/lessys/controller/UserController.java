@@ -29,6 +29,7 @@ public class UserController {
 	ScheduleService scheduleservice;
 	@Autowired
 	ApplyService applyservice;
+	
 	//跳转到登录页面
 	@RequestMapping(value="login")
 	public ModelAndView login(HttpServletRequest request,HttpServletResponse response){
@@ -49,7 +50,6 @@ public class UserController {
 			if(status==1){
 				ModelAndView mv = new ModelAndView();
 				mv.addObject("user", user);	
-				mv.addObject("schedules", scheduleservice.getAllSchedule());
 				mv.addObject("lessons", scheduleservice.getAllLesson());
 				mv.addObject("masters", userservice.getMaster());
 				mv.addObject("count",applyservice.getcount() );

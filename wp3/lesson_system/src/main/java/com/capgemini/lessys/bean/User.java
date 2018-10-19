@@ -1,5 +1,6 @@
 package com.capgemini.lessys.bean;
 
+/*用户实体类*/
 public class User {
 
 	private int id;

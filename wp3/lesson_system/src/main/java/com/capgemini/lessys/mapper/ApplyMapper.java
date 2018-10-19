@@ -19,6 +19,6 @@ public interface ApplyMapper {
 	List<Apply> getApplyByTeacher(int id);//通过老师id找到返回其需要审批的申请表的list
 	List<Apply> getApplyByMaster(int id);//通过主任id找到返回其需要审批的申请表的list
 	int getcount();//获取表单个数
-	Apply getApplyByStuLesId(@Param("stuId")int stuId,@Param("lesId")int lesId);//获取有效的申请(state不为-1)
+	Apply getApplyByStuLesId(@Param("stuId")int stuId,@Param("lesId")int lesId);//获取有效的申请(两个审批状态(state)不为-1)
 	
 }

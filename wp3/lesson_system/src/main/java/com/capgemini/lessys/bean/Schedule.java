@@ -1,5 +1,6 @@
 package com.capgemini.lessys.bean;
 
+/*课程安排实体类*/
 public class Schedule {
 
 	private int id;

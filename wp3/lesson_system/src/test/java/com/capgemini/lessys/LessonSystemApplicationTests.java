@@ -42,8 +42,14 @@ public class LessonSystemApplicationTests {
 		//this.setState();
 		//this.getApplybymap();
 		//this.getApplybystulesid();
-		this.getlesson();
+		//this.getlesson();
+		this.getAllLesson();
 	}
+	
+	public void getAllLesson(){
+		System.out.println(schedulemapper.getAllLesson());
+	}
+	
 	
 	public void getlesson(){
 		

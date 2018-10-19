@@ -1,12 +1,14 @@
 package com.capgemini.lessys.bean;
 
 
+
+
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 
+/*申请表实体类*/
 public class Apply {
 
 	private int id;
@@ -20,13 +22,13 @@ public class Apply {
 	private String email;
 	private int stateOne;
 	private int stateTwo;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date timesubmit;
-	
+	private String submit;
 	private String stuName;
 	private String lesName;
 	private String teaName;
 	private String masName;
+	
 	public Apply() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -53,7 +55,8 @@ public class Apply {
 		this.lesName = lesName;
 		this.teaName = teaName;
 		this.masName = masName;
-	}
+		this.submit=null;
+		}
 
 
 	
@@ -72,6 +75,16 @@ public class Apply {
 		this.timesubmit = timesubmit;
 	}
 	
+	public String getSubmit() {
+		return submit;
+	}
+
+
+	public void setSubmit(String submit) {
+		this.submit = submit;
+	}
+
+
 	public int getStateOne() {
 		return stateOne;
 	}
@@ -191,12 +204,17 @@ public class Apply {
 	public void setTimesubmit(Date timesubmit) {
 		this.timesubmit = timesubmit;
 	}
+
+
 	@Override
 	public String toString() {
 		return "Apply [id=" + id + ", stuId=" + stuId + ", stuNum=" + stuNum + ", grade=" + grade + ", lesId=" + lesId
-				+ ", teaId=" + teaId + ", masId=" + masId + ", phone=" + phone + ", email=" + email + ", timesubmit="
-				+ timesubmit + "]";
+				+ ", teaId=" + teaId + ", masId=" + masId + ", phone=" + phone + ", email=" + email + ", stateOne="
+				+ stateOne + ", stateTwo=" + stateTwo + ", timesubmit=" + timesubmit + ", submit=" + submit
+				+ ", stuName=" + stuName + ", lesName=" + lesName + ", teaName=" + teaName + ", masName=" + masName
+				+ "]";
 	}
+	
 	
 	
 }
