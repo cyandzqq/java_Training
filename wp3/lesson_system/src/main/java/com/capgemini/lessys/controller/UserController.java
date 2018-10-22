@@ -31,6 +31,14 @@ public class UserController {
 	ApplyService applyservice;
 	
 	//跳转到登录页面
+		@RequestMapping(value="index")
+		public ModelAndView index(HttpServletRequest request,HttpServletResponse response){
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("firstPage");
+			return mv;
+		}
+	
+	//跳转到登录页面
 	@RequestMapping(value="login")
 	public ModelAndView login(HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView();

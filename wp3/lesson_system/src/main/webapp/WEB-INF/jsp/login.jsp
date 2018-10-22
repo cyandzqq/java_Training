@@ -33,12 +33,12 @@
 	        <br><br>
 	        <div class="input">
 	             <span class="fh">*</span><span>邮箱地址：</span>
-	             <input type="text" class="student" name="address" >
+	             <input type="text" class="student" name="address" placeholder="请输入邮箱">
 	        </div>
 	        <br>
 	        <div class="input">
 	             <span class="fh">*</span><span>密码：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	             <input type="password" class="student" name="password" >
+	             <input type="password" class="student" name="password" placeholder="请输入密码">
 	        </div>
             <br><br>
 	        <div>
