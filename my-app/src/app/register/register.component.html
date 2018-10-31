@@ -1,0 +1,50 @@
+<!--注册页面-->
+<div style=" width:100%; height: 900px;" id="register">
+
+  <div class="login">
+    <div class="login-top">
+      学生注册
+    </div>
+    <div class="login-center clearfix">
+      <div class="login-center-img"><img src="assets/images/name.png" height="20" width="20"/></div>
+      <div class="login-center-input">
+        <input type="text" name="" value="" [(ngModel)]="stuRegister.name" placeholder="请输入您的用户名" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的用户名'"/>
+        <div class="login-center-input-text">用户名</div>
+      </div>
+    </div>
+
+    <div class="login-center clearfix">
+      <div class="login-center-img"><img src="assets/images/email2.png" height="20" width="20"/></div>
+      <div class="login-center-input">
+        <input type="text" name="" value="" [(ngModel)]="stuRegister.email" placeholder="请输入您的邮箱" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的邮箱'"/>
+        <div class="login-center-input-text">用户邮箱</div>
+      </div>
+    </div>
+    <div class="login-center clearfix">
+      <div class="login-center-img"><img src="assets/images/password.png" height="20" width="20"/></div>
+      <div class="login-center-input">
+        <input type="password" name=""value="" [(ngModel)]="stuRegister.password" placeholder="请输入您的密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'"/>
+        <div class="login-center-input-text">密码</div>
+      </div>
+    </div>
+    <input type="radio" name="role" (click)="stuBox()" style="margin-left: 16%;margin-top: 5%" checked><span>学生</span><input type="radio" name="role" (click)="teaBox()"><span>教师</span><input type="radio" name="role" (click)="masBox()"><span>教导主任</span>
+
+    <div>
+      <p class="login-button" (click)="reg()">注册</p>
+    </div>
+  </div>
+</div>
+<div class="fade" [class.show]="isActive0  ==='show'"></div> 
+<div class="succ-pop" [class.show]="isActive0  ==='show'">
+    <h3 class="title">
+        注册失败
+    </h3>
+    <br>
+    <h2 class="word">抱歉，注册失败!</h2>
+    <br>
+    <br>
+   <button style="background-color: dodgerblue; color: white;width: 130px;height: 35px;margin-left: 240px" (click)="returnlogin()">点击此处返回</button>
+</div>
+
+
+

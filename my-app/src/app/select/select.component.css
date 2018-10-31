@@ -1,0 +1,13 @@
+#studentrequire{
+  height:100%;width:100%; line-height:24px;border-top:none;  padding:1px; padding:10px
+}
+
+table{
+
+  border-collapse:collapse;//表格单元格间距样式
+border:1px solid #0F0;
+}
+
+tr{border:1px solid lightgray;}
+td{
+  border:0px;}

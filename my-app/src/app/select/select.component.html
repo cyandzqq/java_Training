@@ -1,0 +1,47 @@
+
+
+<div id="require"  >
+
+
+  <p >学生名：<input type="text" name="" [(ngModel)]="selectList.studentName">
+    学号：<input type="text" name="" [(ngModel)]="selectList.studentId">
+    课程名：<input type="text" name="" [(ngModel)]="selectList.className">
+    教师名：<input type="text" name="" [(ngModel)]="selectList.teacherName">
+    教导主任：<input type="text" name="" [(ngModel)]="selectList.bossName"></p>
+  <button style="margin-left:85%;margin-top: 30px;width: 80px;height: 30px;background-color: #99CCFF;" id="select"  (click)="chaxun()">查询</button>
+  <br><br>
+  <table style="margin-left: 10px;text-align:center;border: 1px solid lightgrey;background: white;width: 95%;height: 100px;"
+         id="studentrequire">
+    <tr style="border:1px solid lightgrey;">
+      <td width="75px" height="30px">学生姓名</td>
+      <td width="75px" height="30px">学号</td>
+      <td width="75px" height="30px">课程名</td>
+      <td width="75px" height="30px">教师名</td>
+      <td width="75px" height="30px">教导主任</td>
+      <td width="75px" height="30px">学生电话</td>
+      <td width="75px" height="30px">学生邮箱</td>
+      <td width="75px" height="30px">提交时间</td>
+      <td width="75px" height="30px">当前状态</td>
+    </tr>
+    <tr *ngFor="let list of Applys | paginate: { itemsPerPage: 2, currentPage: p }">
+      <td width="75px" height="30px">{{list.stuName}}</td>
+      <td width="75px" height="30px">{{list.id}}</td>
+      <td width="75px" height="30px">{{list.lesId}}</td>
+      <td width="75px" height="30px">{{list.teaName}}</td>
+      <td width="75px" height="30px">{{list.masName}}</td>
+      <td width="75px" height="30px">{{list.phone}}</td>
+      <td width="75px" height="30px">{{list.email}}</td>
+      <td width="75px" height="30px">{{list.submit}}</td>
+      <td width="75px" height="30px" >
+        <span *ngIf="list.stateOne==1&&list.stateTwo==1">通过</span>
+        <span *ngIf="list.stateOne==-1||list.stateTwo==-1">拒绝</span>
+        <span *ngIf="list.stateOne==1&&list.stateTwo==0">审核1</span>
+        <span *ngIf="list.stateOne==0&&list.stateTwo==0">等待</span>
+      </td>
+    </tr>
+
+
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+

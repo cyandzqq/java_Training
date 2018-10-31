@@ -1,0 +1,60 @@
+
+<div id="apply" style=" background-color: #99CCFF; text-align: center; width:60%; height:70%; margin-left: 20%; margin-top: 3%;" >
+  <br/>
+  申请单号：<input type="text"   disabled="disabled" [(ngModel)]="count" name="count"/>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  学生姓名：<input type="text"   disabled="disabled" name="name" [(ngModel)]="listApply.name"/>
+  <br/><br/>
+    <input type="hidden" name="id" />
+    课程：<select class="form-control" id="lesson" name="lesson" [(ngModel)]="listApply.lesid" (change)="getOptions($event.target.value)">
+      <option value="">--请选择课程--</option>
+      <option *ngFor="let list of listLesson" value="" [value]='list.id'>{{list.name}}</option>
+  </select>
+    教师：
+    <select class="city" name="${les.name}" [(ngModel)]="listApply.teaid">
+      <option value="">--选择教师--</option>      
+      <option *ngFor="let list of listT" value="{{list.id}}">
+        {{list.name}}
+      </option>      
+  </select>
+
+    教导主任：<select name="master" [(ngModel)]="listApply.masid">
+      <option value="">--选择主任--</option>
+      <option *ngFor="let mas of listMaster" value="{{mas.id}}">{{mas.name}}</option>
+  </select>
+    <br/><br/>
+    <div class="input">
+      <span class="fh">*</span><span>学号：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" class="student" name="student_id" [(ngModel)]="listApply.student_id" disabled="disabled"/>
+    </div>
+    <br/>
+    <div class="input">
+      <span class="fh">*</span><span>班级：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" class="student" name="class" [(ngModel)]="listApply.class"/>
+    </div>
+    <br/>
+    <div class="input">
+      <span class="fh">*</span><span>邮箱：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" class="student" name="email" [(ngModel)]="listApply.email"/>
+    </div>
+    <br/>
+    <div class="input">
+      <span class="fh">*</span><span>手机号码：</span>
+      <input type="text" class="student" name="phone" [(ngModel)]="listApply.phone" />
+    </div>
+    <input type="submit" value="提交" (click)="tosubmit()"/>
+    <br/><br/>
+</div>
+
+<div class="fade" [class.show]="isActive  ==='show'"></div>
+<div class="succ-pop" [class.show]="isActive  ==='show'">
+    <h3 class="title">
+        提交申请
+    </h3>
+    <br>
+    <h2 class="word">请确定是否提交申请！</h2>
+    <br>
+    <br>
+    <br>
+   <button class="btn" (click)="submit()">确定</button>
+   <button class="btn" (click)="submit2()">取消</button>
+</div>

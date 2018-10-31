@@ -1,0 +1,55 @@
+<div >
+  <table  border="0"  style="margin-left: 0; text-align: center;"id="approvel">
+    <tr>
+
+      <td width="85px" height="30px">学生姓名</td>
+      <td width="85px" height="30px">课程</td>
+      <td width="85px" height="30px">学号</td>
+      <td width="85px" height="30px" >授课老师</td>
+      <td width="85px" height="30px">教导主任</td>
+      <td width="85px" height="30px">学生邮箱</td>
+      <td width="85px" height="30px">操作</td>
+    </tr>
+
+    <tr *ngFor="let list of approvelList | paginate: { itemsPerPage: 2, currentPage: p },let i=index ">
+
+      <td width="75px" height="30px" >{{list.stuName}}</td>
+      <td width="75px" height="30px" >{{list.lesName}}</td>
+      <td width="75px" height="30px" >{{list.stuId}}</td>
+      <td width="75px" height="30px" >{{list.teaName}}</td>
+      <td width="75px" height="30px" >{{list.masName}}</td>
+      <td width="75px" height="30px" >{{list.email}}</td>
+      <td width="75px" height="30px"><button style="width: 50px; height: 30px;" (click)="agree(list.id,i)">同意</button>
+        <button style="width: 50px; height: 30px;" (click)="refuse(list.id,i)">拒绝</button>
+      </td>
+    </tr>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<div class="fade" [class.show]="isActive  ==='show'"></div>
+<div class="succ-pop" [class.show]="isActive  ==='show'">
+    <h3 class="title">
+        拒绝申请
+    </h3>
+    <br>
+    <h2 class="word">请确定是否拒绝！</h2>
+    <br>
+    <br>
+    <br>
+   <button class="btn" (click)="reject()">确定</button>
+   <button class="btn" (click)="cancel()">取消</button>
+</div>
+
+<div class="fade1" [class.show]="isActive1  ==='show'"></div>
+<div class="succ-pop1" [class.show]="isActive1  ==='show'">
+    <h3 class="title">
+        同意申请
+    </h3>
+    <br>
+    <h2 class="word">已同意申请</h2>
+    <br>
+    <br>
+    <br>
+   <button class="btn" (click)="reject1()">确定</button>
+</div>

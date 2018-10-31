@@ -1,0 +1,45 @@
+<div class="background" style="width:100% ; height: 900px; ">
+  <div class="login">
+    <div class="login-top">
+      登录
+    </div>
+    <div class="login-center clearfix">
+      <div class="login-center-img"><img src="assets/images/name.png" height="20" width="20"/></div>
+      <div class="login-center-input">
+        <input type="text" name="" value="" [(ngModel)]="loginlist.user" placeholder="请输入您的用户名" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的邮箱'"/>
+        <div class="login-center-input-text">用户邮箱</div>
+      </div>
+    </div>
+    <div class="login-center clearfix">
+      <div class="login-center-img"><img src="assets/images/password.png" height="20" width="20"/></div>
+      <div class="login-center-input">
+        <input type="password" name=""value="" [(ngModel)]="loginlist.password" placeholder="请输入您的密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'"/>
+        <div class="login-center-input-text">密码</div>
+      </div>
+    </div>
+    <div class="login-button"  >
+      <p (click)="jump()">登陆</p>
+    </div>
+    <div>
+      <p class="login-button" (click)="register()">注册</p>
+    </div>
+  </div>
+  <!--<div id="failed" >
+     <h1>登录失败</h1>
+    <button (click)="back()">返回</button>
+  </div>-->
+</div>
+
+<div class="fade" [class.show]="isActive  ==='show'"></div>
+<div class="succ-pop" [class.show]="isActive  ==='show'">
+    <h3 class="title">
+        登录失败
+    </h3>
+    <br>
+    <h2 class="word">抱歉，登录失败！请查看登陆信息是否有误。</h2>
+    <br>
+    <br>
+    <br>
+   <button style="background-color: dodgerblue; color: white;width: 130px;height: 35px;margin-left: 240px;font-family: SimSun;" (click)="returnlogin()">点击此处返回</button>
+</div>
+

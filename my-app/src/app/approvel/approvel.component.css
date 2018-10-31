@@ -1,0 +1,100 @@
+.fh{color:red;}
+
+.student{border: 1px solid gray;
+  background: white;
+}
+tr{border:1px solid lightgray;}
+td{
+  border:0px;}
+
+#approvel{
+  height:100%;width:100%; line-height:24px;border-top:none;  padding:1px; padding:10px
+}
+/*灰色遮罩层*/
+.fade1{
+  opacity: 0.4;
+  position: absolute;
+  display: none;
+}
+.fade1.show{
+  width:100%;
+  height:100%;
+  background:lightblue;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  display: block;
+}
+/*弹出层*/ 
+.succ-pop1{
+  position: absolute;
+  display: none;
+}
+.succ-pop1.show{
+  width: 400px;
+  height: 300px;
+  background: #fff;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -200px;
+  margin-top: -150px;
+  z-index: 999;
+  border-radius: 5px;
+  display: block;
+}   
+.fade{
+  opacity: 0.4;
+  position: absolute;
+  display: none;
+}
+.fade.show{
+  width:100%;
+  height:100%;
+  background:lightblue;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  display: block;
+}
+/*弹出层*/ 
+.succ-pop{
+  position: absolute;
+  display: none;
+}
+.succ-pop.show{
+  width: 400px;
+  height: 300px;
+  background: #fff;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -200px;
+  margin-top: -150px;
+  z-index: 999;
+  border-radius: 5px;
+  display: block;
+}   
+.title{
+  text-align: center;
+  font-size: 22px;
+  color: dodgerblue;
+  font-family: SimSun;
+}
+.word{
+text-align: center;
+  font-size: 25px;
+  color: darkgray;
+  font-family: SimSun;
+}
+.btn{
+   background-color: dodgerblue;
+    color: white;
+    width: 50px;
+    height: 30px;
+    margin-left: 100px;
+    font-family: SimSun;
+}
+
