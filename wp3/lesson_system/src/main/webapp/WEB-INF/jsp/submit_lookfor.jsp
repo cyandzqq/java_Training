@@ -127,17 +127,17 @@
 	              <br/>
                   <div class="input">
 	                  <span class="fh">*</span><span>班级：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                  <input type="password" class="student" name="class"/>
+	                  <input type="text" class="student" name="class"/>
 	              </div>
                   <br/>
                   <div class="input">
 	                  <span class="fh">*</span><span>邮箱：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                  <input type="password" class="student" name="email" />
+	                  <input type="text" class="student" name="email" />
 	              </div>
                   <br/>
                   <div class="input">
 	                  <span class="fh">*</span><span>手机号码：</span>
-	                  <input type="password" class="student" name="phone" />
+	                  <input type="text" class="student" name="phone" />
                   </div>
                   <input type="submit" value="提交"/>
                   <br/><br/>

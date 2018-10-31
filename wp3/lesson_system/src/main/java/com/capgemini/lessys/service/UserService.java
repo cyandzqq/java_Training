@@ -27,9 +27,10 @@ public class UserService {
 			return 0;
 		}
 		int state=user.getStatus();
-		if(state==1){
+		if(state==1||state==3){
 			usermapper.addUser(user);
-			System.out.println("学生添加成功!");
+			if(state==1)System.out.println("学生添加成功!");
+			if(state==3)System.out.println("主任添加成功!");
 			return 1;
 		}
 		if(state==2){
@@ -37,11 +38,6 @@ public class UserService {
 			User u=usermapper.getUserByEmail(user.getEmail());
 			schedulemapper.addSchedule(new Schedule(u.getId(),id));
 			System.out.println("老师添加成功!");
-			return 1;
-		}
-		if(state==3){
-			usermapper.addUser(user);
-			System.out.println("教导主任添加成功!");
 			return 1;
 		}
 		return 0;
@@ -53,6 +49,9 @@ public class UserService {
 			return null;
 		}	
 		User user =usermapper.getUserByEmail(email);
+		if(user==null){
+			return null;
+		}
 		if(user.getPassword().equals(password)){
 			return user;
 		}else{return null;}
@@ -74,6 +73,10 @@ public class UserService {
 	public User getUserById(int id){
 		User user=usermapper.getUserById(id);
 		return user;
+	}
+	//根据email找到相应的用户
+	public User getUserByEmail(String email){
+		return usermapper.getUserByEmail(email);
 	}
 	
 }
